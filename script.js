@@ -1,22 +1,31 @@
 window.onload = function() {
   document.getElementById('add').addEventListener("click", addTask);
-}
+  document.getElementById('clear').addEventListener("click", clearTask);
 
-function addTask() {
-  var task = document.getElementById('in').value;//get value input
+  var list = document.getElementById('tasks');
 
-    if (task.trim() == '') { // trim Удаляет из строки начальные и конечные пробелы и символы конца строки.
-      alert("Empty string!");
+    function addTask() {
+      var task_value = document.getElementById('in').value;
+
+        if (task_value.trim() == '') {
+          alert("Empty string!");
+        }
+        else {
+          var new_item = document.createElement('li');
+          new_item.textContent = task_value + "  ";
+          list.appendChild(new_item);
+          clearTask();
+
+          del_button = document.createElement('button');
+          del_button.textContent = 'X';
+          del_button.addEventListener("click", function() {
+            this.parentNode.remove();
+          });
+          list.lastChild.appendChild(del_button);
+        }
     }
-    else {
-      var ol = document.getElementById('tasks');
-      var new_item = document.createElement('li');
-      new_item.textContent = task;
-      ol.appendChild(new_item);
 
-      button = document.createElement('button');
-      button.textContent = '-';
-      button.setAttribute('onclick','this.parentNode.remove()');
-      ol.lastChild.appendChild(button);
-  }
+    function clearTask() {
+      document.getElementById('in').value = "";
+    }
 }
