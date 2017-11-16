@@ -7,7 +7,7 @@ window.onload = function() {
     function addTask() {
       var task_value = document.getElementById('in').value;
 
-        if (task_value.trim() == '') { // trim Удаляет из строки начальные и конечные пробелы и символы конца строки.
+        if (task_value.trim() == '') {
           alert("Empty string!");
         }
         else {
@@ -17,10 +17,10 @@ window.onload = function() {
           clearTask();
 
           del_button = document.createElement('button');
-          del_button.textContent = '-';
-          del_button.onclick = function() {
+          del_button.textContent = 'X';
+          del_button.addEventListener("click", function() {
             this.parentNode.remove();
-          };
+          });
           list.lastChild.appendChild(del_button);
         }
     }
